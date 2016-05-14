@@ -36,7 +36,9 @@ case $choice in
     systemctl restart networking || /etc/init.d/networking restart
     ;;
     "2")
-      echo "feature in coming !";
+      sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf;
+			sysctl -p
+			rm /etc/iptables_rules.save
       ;;
 esac
 exit 0;
